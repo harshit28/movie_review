@@ -11,10 +11,10 @@ app.config.from_object(__name__)
 
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-@app.route('/working',methods=['GET'])
+@app.route('/api/working',methods=['GET'])
 def hello_world():
     return 'Hello, World!'
-@app.route('/deletereview/<movie_id>', methods=['DELETE'])
+@app.route('/api/deletereview/<movie_id>', methods=['DELETE'])
 def removereview(movie_id):
     response_object = {'status': 'success'}
     for x in movieList:
@@ -23,7 +23,7 @@ def removereview(movie_id):
     response_object['message'] = 'Book removed!'
     return jsonify(response_object)
 
-@app.route('/getreview',methods=['GET'])
+@app.route('/api/getreview',methods=['GET'])
 def getMovies():
     
     return jsonify(movieList)
@@ -45,4 +45,4 @@ def updatereview(movie_id):
             x['rating'] = movieReview["rating"]
     return 'Update Successful'
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000)

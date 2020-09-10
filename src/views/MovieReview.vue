@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     deleteMovie(id) {
-        const url = `http://127.0.0.1:5000/deletereview/${id}`
+        const url = `http://localhost:5000/api/deletereview/${id}`
         axios.delete(url).then(res=>{
             this.getBooks()
             console.log(res.data.message)
@@ -108,7 +108,7 @@ export default {
 
     },
     getBooks() {
-const url = "http://127.0.0.1:5000/getreview";
+const url = "http://localhost:5000/api/getreview";
       axios.get(url).then((res) => {
         this.movieList = res.data
       });
@@ -119,7 +119,7 @@ const url = "http://127.0.0.1:5000/getreview";
       
     },
     update() {
-          const url= `http://127.0.0.1:5000/updatereview/${this.form.id}`
+          const url= `http://localhost:5000/api/updatereview/${this.form.id}`
         axios.put(url,this.form).then(res=>{
             console.log(res)
         }).catch(err=>{
