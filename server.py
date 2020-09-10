@@ -1,20 +1,40 @@
 import uuid
-
-from flask import Flask, jsonify, request
+import os
+from flask import Flask, jsonify, request ,current_app, send_from_directory
 from flask_cors import CORS
+# from .client import client_bp
 
 movieList =[]
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='./dist/static')
+
+
+
 
 app.config.from_object(__name__)
 
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-@app.route('/api/working',methods=['GET'])
+
+
+APP_DIR = os.path.dirname(__file__)
+ROOT_DIR = os.path.dirname(APP_DIR)
+DIST_DIR = os.path.join(ROOT_DIR, 'dist')
+print(APP_DIR,ROOT_DIR,DIST_DIR)
+@app.route('/<path:path>', methods=['GET'])
+def static_proxy(path):
+  return send_from_directory('./dist', path)
+
+
+@app.route('/')
+def root():
+  return send_from_directory('./dist', 'index.html')
+
+
+@app.route('/working',methods=['GET'])
 def hello_world():
     return 'Hello, World!'
-@app.route('/api/deletereview/<movie_id>', methods=['DELETE'])
+@app.route('/deletereview/<movie_id>', methods=['DELETE'])
 def removereview(movie_id):
     response_object = {'status': 'success'}
     for x in movieList:
@@ -23,7 +43,7 @@ def removereview(movie_id):
     response_object['message'] = 'Book removed!'
     return jsonify(response_object)
 
-@app.route('/api/getreview',methods=['GET'])
+@app.route('/getreview',methods=['GET'])
 def getMovies():
     
     return jsonify(movieList)
