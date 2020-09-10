@@ -3,6 +3,8 @@
 .mypy_cache\
 .env
 
+venv/
+
 /dist
 .coverage
 .pytest_cache/
