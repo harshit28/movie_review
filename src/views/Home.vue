@@ -88,7 +88,7 @@ export default {
   mounted() {},
   methods: {
     ping() {
-      const url = "http://localhost:5000/api/working";
+      const url = "http://localhost:5000/working";
       axios.get(url).then((res) => {
         this.msg = res.data
         console.log("response", res.data);
@@ -96,7 +96,7 @@ export default {
     },
     postreview() {
       console.log("form",this.form)
-      const url = "http://localhost:5000/api/addreview";
+      const url = "http://localhost:5000/addreview";
       axios.post(url,this.form).then((res) => {
         this.msg = res.data
         console.log("response", res.data);
