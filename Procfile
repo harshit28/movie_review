@@ -1,1 +1,1 @@
-web: gunicorn server:addyourreview
+web: gunicorn server:app
