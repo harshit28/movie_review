@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     deleteMovie(id) {
-        const url = `http://addyourreview.herokuapp.com/deletereview/${id}`
+        const url = `https://addyourreview.herokuapp.com/deletereview/${id}`
         axios.delete(url).then(res=>{
             this.getBooks()
             console.log(res.data.message)
@@ -108,7 +108,7 @@ export default {
 
     },
     getBooks() {
-const url = "http://addyourreview.herokuapp.com/getreview";
+const url = "https://addyourreview.herokuapp.com/getreview";
       axios.get(url).then((res) => {
         this.movieList = res.data
       });
@@ -119,7 +119,7 @@ const url = "http://addyourreview.herokuapp.com/getreview";
       
     },
     update() {
-          const url= `http://addyourreview.herokuapp.com/updatereview/${this.form.id}`
+          const url= `https://addyourreview.herokuapp.com/updatereview/${this.form.id}`
         axios.put(url,this.form).then(res=>{
             console.log(res)
         }).catch(err=>{

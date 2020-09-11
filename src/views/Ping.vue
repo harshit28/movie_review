@@ -11,10 +11,11 @@
 
 <script>
 // @ is an alias to /src
-
+import axios from 'axios'
 export default {
   name: "Ping",
   components: {
+    axios
   },
 
   data() {
@@ -25,7 +26,7 @@ export default {
   mounted() {},
   methods: {
     ping() {
-      const url = "http://127.0.0.1:5000/working";
+      const url = "http://addyourreview.herokuapp.com/working";
       axios.get(url).then((res) => {
         this.msg = res.data
         console.log("response", res.data);

@@ -87,14 +87,14 @@ export default {
   mounted() {},
   methods: {
     ping() {
-      const url = "http://addyourreview.herokuapp.com/working";
+      const url = "https://addyourreview.herokuapp.com/working";
       axios.get(url).then((res) => {
         this.msg = res.data
         console.log("response", res.data);
       });
     },
     postreview() {
-      const url = "http://addyourreview.herokuapp.com/addreview";
+      const url = "https://addyourreview.herokuapp.com/addreview";
       axios.post(url,this.form).then((res) => {
         this.msg = res.data
         this.$router.push('/getReview')
