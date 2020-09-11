@@ -1,12 +1,12 @@
 import uuid
 import os
-from flask import Flask, jsonify, request ,current_app, send_from_directory
+from flask import Flask, jsonify, request ,current_app, send_file
 from flask_cors import CORS
 # from .client import client_bp
 
 movieList =[]
 
-app = Flask(__name__,static_folder='./dist/static')
+app = Flask(__name__,static_folder='dist/static')
 
 
 
@@ -21,14 +21,11 @@ APP_DIR = os.path.dirname(__file__)
 ROOT_DIR = os.path.dirname(APP_DIR)
 DIST_DIR = os.path.join(ROOT_DIR, 'dist')
 print(APP_DIR,ROOT_DIR,DIST_DIR)
-@app.route('/<path:path>', methods=['GET'])
-def static_proxy(path):
-  return send_from_directory('./dist', path)
 
 
 @app.route('/')
 def root():
-  return send_from_directory('./dist', 'index.html')
+  return send_file('dist/index.html')
 
 
 @app.route('/working',methods=['GET'])

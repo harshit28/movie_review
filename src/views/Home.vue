@@ -10,7 +10,7 @@
     <div class="col-md-8 order-md-1">
       <form class="needs-validation" novalidate>
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-12 mb-3">
             <label for="firstName">Movie name</label>
             <input type="text" class="form-control" v-model="form.movie" id="firstName" placeholder="" value="" required>
             <div class="invalid-feedback">
@@ -23,9 +23,7 @@
         <div class="mb-3">
           <label for="name">Reviewer</label>
           <div class="input-group">
-            <div class="input-group-prepend" >
-              <span class="input-group-text">@</span>
-            </div>
+           
             <input type="text" class="form-control" v-model="form.name" id="name" placeholder="name" required>
             <div class="invalid-feedback" style="width: 100%;">
               Your name is required.
@@ -53,12 +51,13 @@
         </div>
 
         
-          <button class="btn btn-primary mb-2" @click="postreview">Submit Review</button>
 
 
    
 
       </form>
+                <button type="submit" class="btn btn-primary mb-2" @click="postreview">Submit Review</button>
+
     </div>
   </div>
   </div>
@@ -88,17 +87,17 @@ export default {
   mounted() {},
   methods: {
     ping() {
-      const url = "http://localhost:5000/working";
+      const url = "http://addyourreview.herokuapp.com/working";
       axios.get(url).then((res) => {
         this.msg = res.data
         console.log("response", res.data);
       });
     },
     postreview() {
-      console.log("form",this.form)
-      const url = "http://localhost:5000/addreview";
+      const url = "http://addyourreview.herokuapp.com/addreview";
       axios.post(url,this.form).then((res) => {
         this.msg = res.data
+        this.$router.push('/getReview')
         console.log("response", res.data);
       });
     }
